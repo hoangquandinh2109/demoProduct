@@ -1,0 +1,29 @@
+<button (click)="load()">reload</button>
+<table border="1">
+    <thead>
+        <th>Name</th>
+        <th>SKU</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th></th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of listProducts">
+            <td>{{product.name}}</td>
+            <td>{{product.sku}}</td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.stock}}</td>
+            <td><button (click)="detail(product)">edit</button> <button (click)="delete(product)">delete</button></td>
+        </tr>
+    </tbody>
+</table>
+<hr>
+name: <input type="text" [(ngModel)]="newProduct.name"><br>
+sku: <input type="text" [(ngModel)]="newProduct.sku"><br>
+description: <input type="text" [(ngModel)]="newProduct.description"><br>
+price: <input type="text" [(ngModel)]="newProduct.price"><br>
+stock: <input type="text" [(ngModel)]="newProduct.stock"><br>
+<button *ngIf="!editMode" (click)="create()">Create</button>
+<button *ngIf="editMode" (click)="edit()">Edit</button>
