@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -23,7 +23,7 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  public create(){
+  private create(){
     this.productService.createProduct(this.newProduct).subscribe((resp: any) => {
       this.load();
       this.newProduct = new Product();
@@ -35,7 +35,7 @@ export class ProductComponent implements OnInit {
       this.newProduct = resp[0];
     });
   }
-  public edit(){
+  private edit(){
     this.productService.updateProduct(this.newProduct).subscribe((resp: any) => {
       this.load();
       this.newProduct = new Product();
@@ -48,4 +48,14 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  public buttonClick(btnName: string){
+    switch(btnName){
+      case 'create':
+        this.create();
+        break;
+      case 'edit':
+        this.edit();
+        break;
+    }
+  }
 }
